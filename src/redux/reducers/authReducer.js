@@ -40,7 +40,12 @@ export default (state = initialState, action) => {
       //4. we need to hold the user details.
       // here we will get the details from the action where we will perform our rest call.
 
-      return { ...state, loading: false, isAuthenticated: true, user: payload };
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        token: payload,
+      };
 
     default:
       return state;
