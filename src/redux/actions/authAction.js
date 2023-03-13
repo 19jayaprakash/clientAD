@@ -1,3 +1,4 @@
+import api from "../../utils/api";
 import { REGISTER_SUCCESS } from "../types";
 
 export const register = (data) => (dispatch) => {
