@@ -2,7 +2,7 @@
 //rxReducer
 // its going to hold the data w.r.t. user.
 
-import { REGISTER_SUCCESS } from "../types";
+import { LOGIN_SUCCESS, REGISTER_SUCCESS } from "../types";
 
 // token : used to perform all rest calls
 // needs to be stored and used across the application
@@ -25,6 +25,7 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
       // what needs to be updated in store that information we have to provide it to the store
 
       // once the registration is done successfully then we need to do the following operations:
