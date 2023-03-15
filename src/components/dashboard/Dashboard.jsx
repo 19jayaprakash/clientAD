@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCurrentProfile } from "../../redux/actions/profileAction";
+import DashboardAction from "./DashboardAction";
 export const Dashboard = ({
   profileReducer: { profile },
   auth: { user },
@@ -11,7 +12,11 @@ export const Dashboard = ({
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]); // [] will hold the reqd input like actions, props.
-  const successPart = <>success</>;
+  const successPart = (
+    <>
+      <DashboardAction></DashboardAction>
+    </>
+  );
   const failurePart = (
     <>
       {" "}

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import {
@@ -26,6 +26,17 @@ export const CreateProfile = ({
   createProfile,
   profileReducer: { profile },
 }) => {
+  useEffect(() => {
+    const profileData = { ...initialState };
+    if (!profile) {
+      getCurrentProfile();
+    } else {
+      for (const key in profile) {
+        if (key in profileData) profileData[key] = profile[key];
+      } // we assigned/copied all field values from one object to another.
+    }
+    setFormData(profileData);
+  }, [getCurrentProfile, profile]);
   // create-profile path or edit-profile path
   // useMatch : will check the path
   const creatingProfile = useMatch("create-profile"); //
