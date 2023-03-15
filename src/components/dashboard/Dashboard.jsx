@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getCurrentProfile } from "../../redux/actions/profileAction";
 export const Dashboard = ({
   profileReducer: { profile },
+  auth: { user },
   getCurrentProfile,
 }) => {
   useEffect(() => {
@@ -25,7 +26,7 @@ export const Dashboard = ({
       <section className="container">
         <h1 className="large text-primary">Dashboard</h1>
         <p className="lead">
-          <i className="fas fa-user" /> Welcome
+          <i className="fas fa-user" /> Welcome {user && user.name}
         </p>
         {profile !== null ? successPart : failurePart}
       </section>
@@ -35,11 +36,13 @@ export const Dashboard = ({
 
 Dashboard.propTypes = {
   profileReducer: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   profileReducer: state.profile,
+  auth: state.auth,
 });
 
 const mapDispatchToProps = {

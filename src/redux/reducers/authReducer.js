@@ -2,7 +2,7 @@
 //rxReducer
 // its going to hold the data w.r.t. user.
 
-import { LOGIN_SUCCESS, REGISTER_SUCCESS } from "../types";
+import { LOGIN_SUCCESS, REGISTER_SUCCESS, USER_LOADED } from "../types";
 
 // token : used to perform all rest calls
 // needs to be stored and used across the application
@@ -24,6 +24,8 @@ export default (state = initialState, action) => {
   // destructing.
   const { type, payload } = action;
   switch (type) {
+    case USER_LOADED:
+      return { ...state, user: payload, loading: false };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       // what needs to be updated in store that information we have to provide it to the store

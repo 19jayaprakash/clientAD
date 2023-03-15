@@ -1,4 +1,4 @@
-import { PROFILE_ERROR } from "../types";
+import { GET_PROFILE, PROFILE_ERROR } from "../types";
 
 const initialState = {
   profile: null, // to hold current user profile
@@ -11,6 +11,9 @@ const initialState = {
 export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case GET_PROFILE:
+      // to retrieve, update, create.
+      return { ...state, profile: payload, loading: false };
     case PROFILE_ERROR:
       return { ...state, error: payload, loading: false, profile: null };
 

@@ -8,6 +8,7 @@ import Register3 from "../auth/Register3";
 import Dashboard from "../dashboard/Dashboard";
 
 import Landing from "../layouts/Landing";
+import CreateProfile from "../profile-forms/CreateProfile";
 
 const Routers = () => {
   return (
@@ -17,6 +18,14 @@ const Routers = () => {
         <Route path="/login" element={<Login2></Login2>}></Route>
         <Route path="/register" element={<Register3></Register3>}></Route>
         <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
+        <Route
+          path="/create-profile"
+          element={<CreateProfile></CreateProfile>}
+        ></Route>
+        <Route
+          path="/edit-profile"
+          element={<CreateProfile></CreateProfile>}
+        ></Route>
       </Routes>
     </>
   );

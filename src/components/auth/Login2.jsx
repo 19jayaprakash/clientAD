@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions/authAction";
 const initialState = {
   email: "",
   password: "",
 };
 export const Login2 = ({ auth, login }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(initialState);
   const { email, password } = formData;
   const onChange = (e) => {
@@ -17,7 +18,9 @@ export const Login2 = ({ auth, login }) => {
     e.preventDefault();
     console.log(formData);
     // consume the action.
-    login(formData);
+    login(formData).then((res) => {
+      navigate("/dashboard");
+    });
   };
   return (
     <section className="container">
