@@ -1,18 +1,45 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { getCurrentProfile } from "../../redux/actions/profileAction";
-export const Dashboard = ({ profile, getCurrentProfile }) => {
-  return <div>Dashboard</div>;
+export const Dashboard = ({
+  profileReducer: { profile },
+  getCurrentProfile,
+}) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, [getCurrentProfile]); // [] will hold the reqd input like actions, props.
+  const successPart = <>success</>;
+  const failurePart = (
+    <>
+      {" "}
+      <p>You have not yet setup a profile, please add some info</p>
+      <Link to="/create-profile" className="btn btn-primary my-1">
+        Create Profile
+      </Link>
+    </>
+  );
+  return (
+    <div>
+      <section className="container">
+        <h1 className="large text-primary">Dashboard</h1>
+        <p className="lead">
+          <i className="fas fa-user" /> Welcome
+        </p>
+        {profile !== null ? successPart : failurePart}
+      </section>
+    </div>
+  );
 };
 
 Dashboard.propTypes = {
-  profile: PropTypes.object.isRequired,
+  profileReducer: PropTypes.object.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  profile: state.profile,
+  profileReducer: state.profile,
 });
 
 const mapDispatchToProps = {
