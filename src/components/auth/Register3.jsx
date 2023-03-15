@@ -4,6 +4,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { register } from "../../redux/actions/authAction";
 const initialState = {
   name: "",
@@ -12,6 +13,7 @@ const initialState = {
   confirmPassword: "",
 };
 export const Register3 = ({ auth, register }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(initialState);
   const { name, email, password, confirmPassword } = formData;
   const onChange = (e) => {
@@ -21,7 +23,15 @@ export const Register3 = ({ auth, register }) => {
     e.preventDefault();
     console.log(formData);
     // consume the action.
-    register(formData);
+    register(formData)
+      .then(() => {
+        // it should take us to dashboard page.
+        // to achieve this we need to use navigate hook.
+        navigate("/dashboard");
+      })
+      .catch(() => {});
+    // then : success part.
+    // catch : failure part.
   };
   // export : used to access this component outside this file
   // const : we can't change it

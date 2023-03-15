@@ -11,9 +11,9 @@ export const login = (data) => (dispatch) => {
     .catch();
 };
 
-export const register = (data) => (dispatch) => {
+export const register = (data) => async (dispatch) => {
   // perform the rest call
-  api
+  await api
     .post("/users", data)
     .then((res) => {
       dispatch({
