@@ -8,6 +8,7 @@ import Register3 from "../auth/Register3";
 import Dashboard from "../dashboard/Dashboard";
 
 import Landing from "../layouts/Landing";
+import { AddExperience } from "../profile-forms/Add-Experience";
 import CreateProfile from "../profile-forms/CreateProfile";
 
 const Routers = () => {
@@ -25,6 +26,10 @@ const Routers = () => {
         <Route
           path="/edit-profile"
           element={<CreateProfile></CreateProfile>}
+        ></Route>
+        <Route
+          path="/add-experience"
+          element={<AddExperience></AddExperience>}
         ></Route>
       </Routes>
     </>

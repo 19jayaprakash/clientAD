@@ -1,6 +1,20 @@
 import api from "../../utils/api";
 import setAuthToken from "../../utils/setAuthToken";
-import { GET_PROFILE, PROFILE_ERROR } from "../types";
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from "../types";
+export const addExperience = (data) => async (dispatch) => {
+  setAuthToken(localStorage.getItem("token"));
+  await api
+    .put("/profile/experience", data)
+    .then((res) => {
+      dispatch({ type: UPDATE_PROFILE, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err.response.data.msg);
+      dispatch({ type: PROFILE_ERROR, payload: err.response.data.msg });
+    });
+
+  /// we need to perform the rest call.
+};
 // createProfile action
 // it should work for creating a new profile or should help us for editing the profile.
 export const createProfile =
