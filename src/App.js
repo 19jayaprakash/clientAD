@@ -7,7 +7,7 @@ import Routers from "./components/routers";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  const appName = "EIBFS-Devconnector";
+  const appName = "Devconnector";
   return (
     <div className="App">
       <BrowserRouter>
